@@ -1,0 +1,109 @@
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Navbar styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+}
+
+/* About content styles */
+.about-content {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.about-container {
+  max-width: 48rem;
+  text-align: center;
+  padding: 6rem 0;
+}
+
+/* Features section styles */
+.features-section {
+  background-color: black;
+  color: white;
+  padding: 6rem 1rem;
+}
+
+.features-container {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.feature-card {
+  background-color: rgb(31, 41, 55);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  transform: transition duration-300;
+  cursor: pointer;
+}
+
+.feature-card:hover {
+  transform: scale(1.05);
+  background-color: rgb(55, 65, 81);
+}
+
+/* Estimate button section */
+.estimate-section {
+  background-color: black;
+  padding: 3rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.estimate-button {
+  background-color: white;
+  color: black;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgb(156, 163, 175);
+}
+
+.estimate-button:hover {
+  background-color: black;
+  color: white;
+}
+
+/* Footer styles */
+footer {
+  background-color: black;
+  color: white;
+  padding: 2.5rem 0;
+}
+
+.footer-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Utility classes */
+.hover-underline:hover {
+  text-decoration: underline;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}

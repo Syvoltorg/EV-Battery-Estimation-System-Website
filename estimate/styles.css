@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+body {
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Vehicle card styles */
+.vehicle-card.selected {
+  border-color: #3b82f6;
+  transform: scale(1.02);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Scrollbar styles */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Specification option styles */
+.spec-option:hover {
+  background-color: #f3f4f6;
+}
+
+.spec-option.selected {
+  background-color: #e0e7ff;
+  border-left: 3px solid #4f46e5;
+}
+
+/* State of Health (SoH) indicator styles */
+.soh-good {
+  color: #15803d;
+}
+
+.soh-average {
+  color: #ca8a04;
+}
+
+.soh-poor {
+  color: #b91c1c;
+}
+
+/* Header styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background-color: white;
+  color: black;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Main content styles */
+main {
+  flex-grow: 1;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Progress indicator styles */
+.progress-container {
+  max-width: 48rem;
+  margin: 0 auto 3rem;
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.step-circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.step-connector {
+  flex: 1;
+  height: 0.25rem;
+  margin: 0 0.5rem;
+  background-color: #e5e7eb;
+}
+
+/* Vehicle selection styles */
+.vehicle-selection {
+  position: relative;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.vehicle-type-select {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  width: 16rem;
+  transition: all 0.3s;
+}
+
+.vehicle-type-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(156, 163, 175, 0.3);
+}
+
+/* Carousel styles */
+.carousel-container {
+  position: relative;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: #e5e7eb;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.carousel-button:hover {
+  background-color: #d1d5db;
+}
+
+.carousel-content {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 0 3rem 1rem;
+}
+
+/* Battery section styles */
+.battery-section {
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto;
+  /* Remove or comment out opacity to avoid affecting modal */
+  /* opacity: 0.7; */
+}
+
+.soh-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000; /* or even higher if needed */
+  background-color: rgba(0, 0, 0, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 0.5rem;
+  max-width: 28rem;
+  width: 91.666667%;
+  padding: 1.5rem;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  opacity: 1 !important;
+  z-index: 10001;
+}
+
+.modal-content h3 {
+  color: black;
+  opacity: 1;
+}
+
+.modal-content p {
+  color: #1f2937;
+  opacity: 1;
+  line-height: 1.5;
+}
+
+/* Summary bar styles */
+.summary-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-top: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem;
+}
+
+/* Footer styles */
+footer {
+  background-color: black;
+  color: white;
+  padding: 2.5rem 0;
+}
+
+.footer-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Utility classes */
+.hover-underline:hover {
+  text-decoration: underline;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}

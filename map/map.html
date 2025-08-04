@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EV BES</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+    <script src="script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <header
+      class="flex justify-between items-center px-6 md:px-12 py-6 bg-white shadow-sm"
+    > 
+      <div class="text-xl font-bold tracking-widest"></div>
+      <nav class="flex items-center space-x-4 md:space-x-10 text-base">
+        <a href="../index.html" class="hover-underline">Home</a>
+        <a href="../about/about.html" class="hover-underline">About</a>
+        <a href="../technology/technology.html" class="hover-underline"
+          >Technology</a
+        >
+        <a href="../estimate/estimate.html" class="hover-underline">Estimate</a>
+      </nav>
+    </header>
+
+    <hr />
+
+    <!-- Notification Area -->
+    <div id="notificationArea" class="px-4 py-2 md:px-12" style="display: none;">
+      <div id="notificationMessage" class="p-3 rounded-md text-sm"></div>
+    </div>
+
+    <section class="bg-gray-50 px-4 py-4 md:px-12 md:py-6 shadow-sm">
+      <!-- Add Vehicle Info Section -->
+      <div id="vehicleInfo" class="mb-6 p-4 bg-white rounded-lg shadow-sm">
+        <h2 class="text-base font-semibold mb-3">Selected Vehicle</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p>
+              <strong>Manufacturer:</strong>
+              <span id="vehicleManufacturer"></span>
+            </p>
+            <p><strong>Model:</strong> <span id="vehicleModel"></span></p>
+            <p><strong>Weight:</strong> <span id="vehicleWeight"></span></p>
+          </div>
+          <div>
+            <p><strong>Battery:</strong> <span id="vehicleBattery"></span></p>
+            <p><strong>Range:</strong> <span id="vehicleRange"></span></p>
+            <p>
+              <strong>Efficiency:</strong> <span id="vehicleEfficiency"></span>
+            </p>
+          </div>
+        </div>
+        <div class="mt-3">
+          <p>
+            <strong>Energy Consumption:</strong>
+            <span id="vehicleEnergyConsumption"></span>
+          </p>
+          <p>
+            <strong>Battery SoH:</strong>
+            <span id="vehicleSoh" class="font-medium"></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-5xl mx-auto">
+        <form id="routeForm" onsubmit="calculateRoute(event)" class="space-y-4">
+          <!-- From / To -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label for="from" class="block text-sm font-medium text-gray-700"
+                >Start Location</label
+              >
+              <input
+                id="from"
+                type="text"
+                placeholder="Enter starting point"
+                required
+                class="p-3 border rounded-md w-full text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="to" class="block text-sm font-medium text-gray-700"
+                >Destination</label
+              >
+              <input
+                id="to"
+                type="text"
+                placeholder="Enter destination"
+                required
+                class="p-3 border rounded-md w-full text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
+          <!-- Driving Style and Road Type -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label
+                for="drivingStyle"
+                class="block text-sm font-medium text-gray-700"
+                >Driving Style</label
+              >
+              <select
+                id="drivingStyle"
+                class="p-3 border rounded-md w-full text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="normal">Normal Mode</option>
+                <option value="sport">Sport Mode</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label
+                for="roadType"
+                class="block text-sm font-medium text-gray-700"
+                >Road Type</label
+              >
+              <select
+                id="roadType"
+                class="p-3 border rounded-md w-full text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="city">City Roads</option>
+                <option value="highway">Highway</option>
+                <option value="hilly">Hilly Terrain</option>
+                <option value="rural">Rural Roads</option>
+                <option value="mixed">Mixed Terrain</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Avg Speed + Load Level -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label
+                for="avgSpeed"
+                class="block text-sm font-medium text-gray-700"
+                >Average Speed (km/h)</label
+              >
+              <input
+                id="avgSpeed"
+                type="number"
+                placeholder="Enter average speed"
+                min="10"
+                max="150"
+                class="p-3 border rounded-md w-full text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                for="loadLevel"
+                class="block text-sm font-medium text-gray-700"
+                >Load Level</label
+              >
+              <select
+                id="loadLevel"
+                class="p-3 border rounded-md w-full text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="light">Light Load (1-2 persons)</option>
+                <option value="medium">Medium Load (3-4 persons)</option>
+                <option value="full">Full Load (5 persons)</option>
+                <option value="cargo">With Cargo</option>
+                <option value="heavy">Heavy Load (Full + Cargo)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- HVAC + Button -->
+          <div class="flex flex-col md:flex-row items-center gap-4">
+            <div class="space-y-2 flex-grow">
+              <label for="hvac" class="block text-sm font-medium text-gray-700"
+                >HVAC Settings</label
+              >
+              <select
+                id="hvac"
+                class="p-3 border rounded-md w-full text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="none">None</option>
+                <option value="ac">AC (Cooling)</option>
+                <option value="heater">Heater (Winter)</option>
+              </select>
+            </div>
+            <button
+              type="submit"
+              id="calculateBtn"
+              class="bg-black text-white px-6 py-3 rounded-md text-sm font-semibold hover:bg-gray-800 transition flex-shrink-0 mt-6"
+            >
+              Calculate Route
+            </button>
+          </div>
+
+          <div id="errorMessage" class="text-red-600 text-sm mt-2"></div>
+        </form>
+      </div>
+    </section>
+
+    <div class="app-container">
+      <div id="map"></div>
+      <section
+        id="routeSummary"
+        class="flex flex-col md:flex-row bg-white w-full max-w-full animate-fade-in"
+        style="display: none"
+      >
+        <!-- Left Column: Distance, Travel Time, Weather -->
+        <div
+          class="flex flex-col md:w-1/2 space-y-4 mb-6 md:mb-0 md:mr-6 px-6 md:px-12"
+        >
+          <!-- Distance -->
+          <div
+            class="bg-gray-50 rounded-lg p-4 flex items-center shadow-sm animate-slide-in-left"
+          >
+            <div>
+              <p class="text-sm text-gray-600">Distance</p>
+              <p id="routeDistance" class="text-xl font-semibold text-gray-800">
+                -- km
+              </p>
+            </div>
+          </div>
+
+          <!-- Travel Time -->
+          <div
+            class="bg-gray-50 rounded-lg p-4 flex items-center shadow-sm animate-slide-in-left animation-delay-100"
+          >
+            <div>
+              <p class="text-sm text-gray-600">Travel Time</p>
+              <p
+                id="routeTravelTime"
+                class="text-xl font-semibold text-gray-800"
+              >
+                -- mins
+              </p>
+            </div>
+          </div>
+
+          <!-- Weather -->
+          <div
+            class="bg-gray-50 rounded-lg p-4 flex items-center shadow-sm animate-slide-in-left animation-delay-200"
+          >
+            <div>
+              <p class="text-sm text-gray-600">Weather</p>
+              <p id="routeWeather" class="text-xl font-semibold text-gray-800">
+                --
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Battery Required -->
+        <div class="md:w-1/2 flex flex-col justify-center items-center">
+          <div
+            class="bg-black text-white rounded-lg py-6 flex flex-col justify-center items-center shadow-lg animate-fade-in animation-delay-300 w-full max-w-sm mx-auto px-10 md:px-20 mb-4"
+          >
+            <p class="text-lg font-medium opacity-90">Battery Required</p>
+            <p
+              id="batteryRequired"
+              class="text-6xl font-bold mt-2 animate-pulse"
+            >
+              --%
+            </p>
+            <p class="text-sm opacity-80 mt-2">of total battery capacity</p>
+          </div>
+          <div
+            id="batteryWarningContainer"
+            class="w-full max-w-sm mx-auto"
+          ></div>
+        </div>
+      </section>
+
+      <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <!-- Charging Stations List -->
+    <div id="chargingStationsList" class="max-w-4xl mx-auto my-8"></div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-10 mt-auto">
+      <div
+        class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm"
+      >
+        <div>
+          <h2 class="font-semibold mb-2">EV BES</h2>
+          <p>
+            Your trusted partner in EV battery estimation and performance
+            tracking.
+          </p>
+        </div>
+        <div>
+          <h2 class="font-semibold mb-2">Quick Links</h2>
+          <ul class="space-y-1">
+            <li><a href="../index.html" class="hover-underline">Home</a></li>
+            <li>
+              <a href="../about/about.html" class="hover-underline">About</a>
+            </li>
+            <li>
+              <a href="../technology/technology.html" class="hover-underline"
+                >Technology</a
+              >
+            </li>
+            <li>
+              <a href="../estimate/estimate.html" class="hover-underline"
+                >Estimate</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-semibold mb-2">Contact</h2>
+          <p>Email: syvoltorg@gmail.com</p>
+        </div>
+      </div>
+      <div class="text-center text-xs mt-6 text-gray-400">
+        &copy; 2025 EV BES. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>

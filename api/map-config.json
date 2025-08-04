@@ -1,0 +1,10 @@
+{
+  "googleMapsApiKey": "AIzaSyBZOr4BbVrMGAIUSCjB8hICA1cY6addLMI",
+  "weatherstackApiKey": "60e70755b933d62893e7324af1d2e1e1",
+  "tomtomApiKey": "GRLqJEw7HA6AbDF9LMCH76WD3beuxakm",
+  "openChargeMapApiKey": "feb43967-dd99-4776-8474-0e6cef3d1d98",
+  "mapConfig": {
+    "defaultCenter": { "lat": 12.9716, "lng": 77.5946 },
+    "defaultZoom": 12
+  }
+}

@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;"
+    />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta
+      http-equiv="Referrer-Policy"
+      content="strict-origin-when-cross-origin"
+    />
+    <title>EV BES</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="flex flex-col min-h-screen bg-white">
+    <!-- Header -->
+    <header>
+      <div class="text-xl font-semibold tracking-widest"></div>
+      <nav class="flex items-center space-x-10 text-base">
+        <a href="../index.html" class="hover-underline">Home</a>
+        <a href="../about/about.html" class="hover-underline">About</a>
+        <a href="../technology/technology.html" class="hover-underline"
+          >Technology</a
+        >
+        <a href="estimate.html" class="hover-underline font-semibold"
+          >Estimate</a
+        >
+      </nav>
+    </header>
+    <!-- Main Content -->
+    <main>
+      <!-- Greeting Section -->
+      <section class="text-center">
+        <h1 class="text-4xl font-bold mb-4">Hi, User</h1>
+        <p class="text-xl">First let's know about your vehicle</p>
+      </section>
+
+      <!-- Progress Indicator -->
+      <div class="progress-container">
+        <div class="progress-steps">
+          <div class="flex flex-col items-center">
+            <div id="step1" class="step-circle bg-blue-500">1</div>
+            <span class="text-xs mt-1">Vehicle Type</span>
+          </div>
+          <div id="connector1" class="step-connector"></div>
+          <div class="flex flex-col items-center">
+            <div id="step2" class="step-circle bg-gray-200 text-gray-500">
+              2
+            </div>
+            <span class="text-xs mt-1">Battery Info</span>
+          </div>
+          <div id="connector2" class="step-connector"></div>
+          <div class="flex flex-col items-center">
+            <div id="step3" class="step-circle bg-gray-200 text-gray-500">
+              3
+            </div>
+            <span class="text-xs mt-1">Complete</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vehicle Selection Section -->
+      <section class="vehicle-selection">
+        <h2 class="text-2xl font-semibold mb-6 text-center">
+          Select your Vehicle Type
+        </h2>
+
+        <div class="flex justify-center mb-10">
+          <select id="vehicleType" class="vehicle-type-select">
+            <option value="">-- Select Vehicle Type --</option>
+            <option value="car">Car</option>
+            <option value="bike">Bike</option>
+          </select>
+        </div>
+
+        <!-- Vehicle Models Container -->
+        <div id="vehicleModels" class="hidden fade-in">
+          <!-- Car Models -->
+          <div id="carModels" class="hidden">
+            <h2 class="text-2xl font-semibold mb-6 text-center">
+              Select your Car Model
+            </h2>
+            <div class="carousel-container">
+              <button
+                onclick="scrollCarousel('carContainer', -1)"
+                class="carousel-button left-0"
+              >
+                ←
+              </button>
+              <div
+                id="carContainer"
+                class="carousel-content hide-scrollbar"
+              ></div>
+              <button
+                onclick="scrollCarousel('carContainer', 1)"
+                class="carousel-button right-0"
+              >
+                →
+              </button>
+            </div>
+          </div>
+
+          <!-- Bike Models -->
+          <div id="bikeModels" class="hidden">
+            <h2 class="text-2xl font-semibold mb-6 text-center">
+              Select your Bike Model
+            </h2>
+            <div class="carousel-container">
+              <button
+                onclick="scrollCarousel('bikeContainer', -1)"
+                class="carousel-button left-0"
+              >
+                ←
+              </button>
+              <div
+                id="bikeContainer"
+                class="carousel-content hide-scrollbar"
+              ></div>
+              <button
+                onclick="scrollCarousel('bikeContainer', 1)"
+                class="carousel-button right-0"
+              >
+                →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vehicle Specification Selection -->
+        <div id="specificationSelector" class="max-w-lg mx-auto mt-8 hidden">
+          <h3 class="text-lg font-medium mb-2">Select Specification Variant</h3>
+          <div id="specOptions" class="border rounded-md overflow-hidden"></div>
+        </div>
+      </section>
+
+      <!-- Battery Info Section -->
+      <section id="batterySection" class="battery-section">
+        <div class="flex items-center justify-center mb-4 space-x-2">
+          <h2 class="text-2xl font-semibold">
+            Do you know your battery's SoH?
+          </h2>
+          <button
+            onclick="toggleSohInfo()"
+            class="text-gray-500 hover:text-gray-700"
+            aria-label="Information about SoH"
+          >
+            ℹ️
+          </button>
+        </div>
+
+        <!-- Yes/No Buttons -->
+        <div class="flex justify-center space-x-8 mb-8">
+          <button
+            onclick="showBatteryField('soh')"
+            class="px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 disabled:opacity-50"
+            id="btnYes"
+            disabled
+          >
+            Yes
+          </button>
+          <button
+            onclick="showBatteryField('range')"
+            class="px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 disabled:opacity-50"
+            id="btnNo"
+            disabled
+          >
+            No
+          </button>
+        </div>
+
+        <!-- Input Fields -->
+        <div id="sohField" class="hidden mb-6">
+          <label for="inputSoH" class="block mb-1 font-medium text-left"
+            >What is your battery's SoH (State of Health)?</label
+          >
+          <input
+            id="inputSoH"
+            type="text"
+            class="w-full border p-3 rounded-md"
+            placeholder="Ex: 89%"
+          />
+        </div>
+
+        <div id="rangeField" class="hidden mb-6">
+          <label for="inputRange" class="block mb-1 font-medium text-left"
+            >How many kilometers does your vehicle run on a single full
+            charge?</label
+          >
+          <input
+            id="inputRange"
+            type="text"
+            class="w-full border p-3 rounded-md"
+            placeholder="Ex: 100 km"
+          />
+        </div>
+
+        <!-- Error Message -->
+        <div
+          id="errorMessage"
+          class="hidden text-red-500 text-sm mb-4 text-left"
+        ></div>
+
+        <!-- Success Message -->
+        <div
+          id="successMessage"
+          class="hidden bg-green-100 text-green-800 p-3 rounded-md mb-4"
+        >
+          Battery information saved successfully!
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-center space-x-6 mt-8">
+          <button
+            onclick="clearSelections()"
+            class="px-6 py-2 border rounded-md hover:bg-gray-100"
+          >
+            Clear
+          </button>
+          <button
+            onclick="saveBatteryInfo()"
+            class="px-6 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-800"
+            id="saveBtn"
+          >
+            Save
+          </button>
+          <button
+            onclick="handleNext()"
+            class="px-6 py-2 bg-black text-white rounded-md opacity-75 cursor-not-allowed"
+            id="nextBtn"
+            disabled
+          >
+            Next
+          </button>
+        </div>
+      </section>
+
+      <!-- Vehicle Summary Bar -->
+      <div id="summaryBar" class="summary-bar hidden">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <div
+              id="summaryImage"
+              class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden"
+            ></div>
+            <div>
+              <h3 id="summaryTitle" class="font-semibold"></h3>
+              <p id="summaryDetails" class="text-sm text-gray-600"></p>
+              <p id="summarySoH" class="text-sm font-medium"></p>
+            </div>
+          </div>
+          <button
+            onclick="clearSelections()"
+            class="text-sm text-gray-600 hover:text-red-600"
+          >
+            Clear selection
+          </button>
+        </div>
+      </div>
+
+      <!-- SoH Info Modal -->
+      <div id="sohInfoModal" class="soh-modal hidden">
+        <div class="modal-content">
+          <button
+            onclick="toggleSohInfo()"
+            class="absolute top-2 right-3 text-gray-500 hover:text-black text-2xl"
+          >
+            &times;
+          </button>
+          <h3 class="text-xl font-semibold mb-2 text-black">What is SoH?</h3>
+          <p class="text-sm text-gray-800">
+            SoH (State of Health) represents the overall condition of your
+            battery compared to its original state when new. It is expressed as
+            a percentage. A SoH of 100% means the battery is in perfect
+            condition, while lower percentages indicate degradation. It
+            decreases over time due to aging, charging cycles, and environmental
+            factors like temperature.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div>
+          <h2 class="font-semibold mb-2">EV BES</h2>
+          <p>
+            Your trusted partner in EV battery estimation and performance
+            tracking.
+          </p>
+        </div>
+        <div>
+          <h2 class="font-semibold mb-2">Quick Links</h2>
+          <ul class="space-y-1">
+            <li><a href="../index.html" class="hover-underline">Home</a></li>
+            <li>
+              <a href="../about/about.html" class="hover-underline">About</a>
+            </li>
+            <li>
+              <a href="../technology/technology.html" class="hover-underline"
+                >Technology</a
+              >
+            </li>
+            <li>
+              <a href="estimate.html" class="hover-underline">Estimate</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-semibold mb-2">Contact</h2>
+          <p>Email: syvoltorg@gmail.com</p>
+        </div>
+      </div>
+      <div class="text-center text-xs mt-6 text-gray-400">
+        &copy; 2025 EV BES. All rights reserved.
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
