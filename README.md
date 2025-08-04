@@ -1,4 +1,4 @@
-# EV Battery Estimation System (BES) 🌍
+# EV Battery Estimation System (EV_BES) 
 
 A web-based platform for Electric Vehicle (EV) owners to estimate battery usage, plan optimal routes, and discover charging stations in real time—directly from their browser. Supports both EV cars and bikes, integrating live weather, traffic, elevation, and battery health data for smarter, greener journeys.
 
