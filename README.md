@@ -74,10 +74,10 @@ EV_BES
 │   └── security.js
 │
 ├── technology/             # Technology page details
-    ├── technology.html
-    ├── styles.css
-    ├── car-tech.png
-    └── technology.png
+│   ├── technology.html
+│   ├── styles.css
+│   ├── car-tech.png
+│   └── technology.png
 ```
 
 ## 🚀 Getting Started
