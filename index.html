@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://maps.googleapis.com https://maps.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maps.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://maps.googleapis.com https://maps.gstatic.com; connect-src 'self' https://maps.googleapis.com https://maps.gstatic.com;"
+    />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta
+      http-equiv="Referrer-Policy"
+      content="strict-origin-when-cross-origin"
+    />
+    <title>EV BES</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Google Maps -->
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap"
+    ></script>
+  </head>
+
+  <body class="flex flex-col min-h-screen bg-white text-gray-900">
+    <!-- Navbar -->
+    <header>
+      <div class="text-xl font-semibold tracking-widest"></div>
+      <nav class="flex items-center space-x-10 text-base">
+        <a href="index.html" class="hover-underline font-semibold">Home</a>
+        <a href="about/about.html" class="hover-underline">About</a>
+        <a href="technology/technology.html" class="hover-underline"
+          >Technology</a
+        >
+        <a href="estimate/estimate.html" class="hover-underline">Estimate</a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <!-- Hero Section -->
+      <section
+        class="hero-section"
+        style="background-image: url(&quot;ev-car-clean-bg.png&quot;)"
+      >
+        <div class="hero-content">
+          <h1
+            class="text-3xl font-regular tracking-wide text-black mb-4 text-shadow"
+          >
+            WELCOME TO EV
+          </h1>
+          <h1
+            class="text-6xl font-semibold tracking-wide text-black mb-4 text-shadow"
+          >
+            BATTERY ESTIMATION SYSTEM
+          </h1>
+          <p class="text-lg text-white-600">
+            Empowering Your Electric Vehicle Experience
+          </p>
+        </div>
+      </section>
+      <div class="h-35 w-full bg-black"></div>
+
+      <!-- Vision Section -->
+      <section class="vision-section">
+        <div class="vision-content">
+          <div class="pt-28">
+            <div class="flex items-center space-x-4 mb-6">
+              <div class="w-10 h-px bg-gray-400"></div>
+              <h2 class="uppercase text-xs tracking-[0.3em] text-gray-400">
+                Our Vision
+              </h2>
+            </div>
+            <p class="text-lg leading-relaxed">
+              At EV BES, we are revolutionizing the way electric vehicle owners
+              perceive and utilize their batteries. Our goal is to redefine the
+              boundaries of electric vehicle mobility and provide the most
+              accurate battery estimations for a seamless driving experience.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Black filler -->
+      <div class="h-35 w-full bg-black"></div>
+    </main>
+
+    <!-- <hr style="color:gray; opacity:90;"> -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div>
+          <h2 class="font-semibold mb-2">EV BES</h2>
+          <p>
+            Your trusted partner in EV battery estimation and performance
+            tracking.
+          </p>
+        </div>
+        <div>
+          <h2 class="font-semibold mb-2">Quick Links</h2>
+          <ul class="space-y-1">
+            <li><a href="index.html" class="hover-underline">Home</a></li>
+            <li>
+              <a href="about/about.html" class="hover-underline">About</a>
+            </li>
+            <li>
+              <a href="technology/technology.html" class="hover-underline"
+                >Technology</a
+              >
+            </li>
+            <li>
+              <a href="estimate/estimate.html" class="hover-underline"
+                >Estimate</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-semibold mb-2">Contact</h2>
+          <p>Email: syvoltorg@gmail.com</p>
+        </div>
+      </div>
+      <div class="text-center text-xs mt-6 text-gray-400">
+        &copy; 2025 EV BES. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>

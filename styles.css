@@ -1,0 +1,81 @@
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Navbar styles */
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  color: white;
+}
+
+/* Hero section styles */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 8rem;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Vision section styles */
+.vision-section {
+  background-color: black;
+  color: white;
+  padding: 5rem 2rem;
+}
+
+.vision-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  align-items: center;
+  padding-top: 5.5rem;
+}
+
+/* Footer styles */
+footer {
+  background-color: black;
+  color: white;
+  padding: 2.5rem 0;
+}
+
+.footer-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Utility classes */
+.hover-underline:hover {
+  text-decoration: underline;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
