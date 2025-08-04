@@ -35,6 +35,7 @@ A web-based platform for Electric Vehicle (EV) owners to estimate battery usage,
 
 ## 📁 Project Structure
 
+```text
 EV_BES
 │
 ├── app.js                  # Main application logic
@@ -77,6 +78,7 @@ EV_BES
     ├── styles.css
     ├── car-tech.png
     └── technology.png
+```
 
 ## 🚀 Getting Started
 
